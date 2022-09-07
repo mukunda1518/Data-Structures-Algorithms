@@ -1,3 +1,5 @@
+# Leetcode : https://leetcode.com/problems/maximum-performance-of-a-team/
+
 from queue import PriorityQueue
 mod = 10 ** 9 + 7
 def get_peformance_of_a_team(speeds, efficiencies, n, k):

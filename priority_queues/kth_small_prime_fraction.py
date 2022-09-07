@@ -1,4 +1,7 @@
+# Leetcode: https://leetcode.com/problems/k-th-smallest-prime-fraction/
+
 from queue import PriorityQueue
+
 
 def find_kth_smallest_fraction(nums, n, k):
     pq = PriorityQueue()
