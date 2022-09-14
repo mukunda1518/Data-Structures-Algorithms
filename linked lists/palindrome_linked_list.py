@@ -1,46 +1,52 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-class Solution:
-    def isPalindrome(self, head) -> bool:
+# Leetcode Question : https://leetcode.com/problems/palindrome-linked-list/
 
-        # Apporach1 - Time Complexity: O(n) - Space Complexity: O(1)
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-        slow = fast = head
 
-        # Find middle (slow)
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def print_list(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" ")
+            temp = temp.next
+    
+    def is_linked_list_palindrome(self, head):
+        fast = slow = head
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
-
-        # Reverse the second half
         prev = None
         while slow:
             temp = slow.next
             slow.next = prev
             prev = slow
             slow = temp
+        
         left, right = head, prev
-
         while right:
-            if left.val != right.val:
-                return False
+            if left.data != right.data:
+                return "NO"
             left = left.next
             right = right.next
-        return True
+        return "YES"
 
-        # Apporach2 - Time Complexity: O(n) - Space Complexity: O(n)
+# main
 
-        nums = []
-        while head:
-            nums.append(head.val)
-            head = head.next
-        left, right = 0, len(nums) - 1
-        while left < right:
-            if nums[left] != nums[right]:
-                return False
-            left += 1
-            right -= 1
-        return True
+t = int(input())
+for _ in range(t):
+    l_list = LinkedList()
+    nums = [int(val) for val in input().split()]
+    nums.pop()
+    l_list.head = Node(nums[0])
+    temp = l_list.head
+    for val in nums[1:]:
+        temp.next = Node(val)
+        temp = temp.next
+    print(l_list.is_linked_list_palindrome(l_list.head))
+    
