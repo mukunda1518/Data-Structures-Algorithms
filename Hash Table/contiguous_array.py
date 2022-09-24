@@ -1,5 +1,6 @@
 # Leetcode: https://leetcode.com/problems/contiguous-array/
 
+
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         count = 0
@@ -17,6 +18,7 @@ class Solution:
 
 
 # To find no of such subarrays both 1's and 0's are equal
+# https://www.youtube.com/watch?v=svMdY6wlQ6I
 
 if __name__ == "__main__":
     n = int(input())
