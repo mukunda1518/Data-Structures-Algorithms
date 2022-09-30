@@ -57,8 +57,8 @@ def get_depth_apporoach1(root):
 def get_depth_apporach2(root, level=0):
     if root is None:
         return level
-    left_length = get_depth(root.left, level + 1)
-    right_length = get_depth(root.right, level + 1)
+    left_length = get_depth_apporach2(root.left, level + 1)
+    right_length = get_depth_apporach2(root.right, level + 1)
     return max(left_length, right_length)
 
 # Iterative apporach

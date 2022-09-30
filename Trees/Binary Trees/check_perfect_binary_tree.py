@@ -44,12 +44,12 @@ def level_order_travesal(root):
     q = deque()
     q.append(root)
     while len(q) != 0:
-        node = q.popleft()
-        print(node.data, end=" ")
-        if node.left:
-            q.append(node.left)
-        if node.right:
-            q.append(node.right)
+        root = q.popleft()
+        print(root.data, end=" ")
+        if root.left:
+            q.append(root.left)
+        if root.right:
+            q.append(root.right)
 
 
 if __name__ == "__main__":
