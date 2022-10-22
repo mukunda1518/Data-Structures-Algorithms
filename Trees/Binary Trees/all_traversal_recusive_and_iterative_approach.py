@@ -76,7 +76,7 @@ def post_order_traversal_recursive(root):
         print(root.data, end=" ")
 
 
-def post_order_traversal_iterative(root):
+def post_order_traversal_iterative_hard(root):
     stack = []
     while True:
 
@@ -101,6 +101,25 @@ def post_order_traversal_iterative(root):
     print()
 
 
+def post_order_traversal_iterative_medium(root):
+    stack = []
+    while root or len(stack) != 0:
+        if root:
+            stack.append(root)
+            root = root.left
+        else:
+            temp = stack[-1].right
+            if temp is None:
+                temp = stack.pop()
+                print(temp.data, end=" ")
+                while stack and stack[-1].right == temp:
+                    temp = stack.pop()
+                    print(temp.data, end=" ")
+            else:
+                root = temp
+    print()
+
+
 if __name__ == "__main__":
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     root = None
@@ -116,7 +135,7 @@ if __name__ == "__main__":
     in_order_traversal_recursive(root)
     print()
     print("Post order traversal - Iterative and Recursive")
-    post_order_traversal_iterative(root)
+    post_order_traversal_iterative_medium(root)
     post_order_traversal_recursive(root)
 
 
