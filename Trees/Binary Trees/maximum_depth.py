@@ -7,6 +7,7 @@ int_max = sys.maxsize
 
 Q = deque()
 
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -38,13 +39,16 @@ def insert_node(data, root):
     if data != int_max:
         Q.append(new_node)
     return root
-    
+
+
 def remove_null_nodes(root):
     if root is None or root.data == int_max:
         return None
     root.left = remove_null_nodes(root.left)
     root.right = remove_null_nodes(root.right)
     return root
+
+
 def get_depth_apporoach1(root):
     if root is None:
         return 0
@@ -61,7 +65,9 @@ def get_depth_apporach2(root, level=0):
     right_length = get_depth_apporach2(root.right, level + 1)
     return max(left_length, right_length)
 
+
 # Iterative apporach
+
 
 def get_depth_by_iterative_apporach(root):
     stack = [(root, 1)]
@@ -74,7 +80,8 @@ def get_depth_by_iterative_apporach(root):
         if node.left:
             stack.append( (node.left, length+1) )
     return depth
-    
+
+
 if __name__ == "__main__":
     arr = input().split()
     root = None
