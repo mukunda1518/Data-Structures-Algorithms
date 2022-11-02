@@ -45,6 +45,26 @@ def build_binary_tree_approach2(pre_order, in_order):
     )[0]
 
 
+def build_binary_tree_approach3(pre_order, in_order):
+    in_order_map = {}
+    for i, val in enumerate(in_order):
+        in_order_map[val] = i
+    len_ = len(pre_order)
+
+    def build_binary_tree(preorder, pre_s, pre_e, inorder, in_s, in_e, in_map):
+        if pre_s > pre_e or in_s > in_e:
+            return None
+        node = Node(preorder[pre_s])
+        n_index = in_map[root.data] # node index
+
+        nums_left = n_index - in_s
+
+        node.left = build_binary_tree(preorder, pre_s + 1, pre_s + nums_left, inorder, in_s, n_index - 1, in_map)
+        node.right = build_binary_tree(preorder, pre_s + nums_left + 1, pre_e, inorder, n_index + 1, in_e, in_map)
+        return root
+    return build_binary_tree(pre_order, 0, len_ - 1, in_order, 0, len_ - 1, in_order_map)
+
+
 def post_order(root):
     if root is None:
         return
