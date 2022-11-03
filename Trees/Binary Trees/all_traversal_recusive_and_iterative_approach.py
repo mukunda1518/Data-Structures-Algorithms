@@ -1,3 +1,6 @@
+# Leetcode: https://leetcode.com/problems/binary-tree-inorder-traversal/solutions/148939/CPP-Morris-Traversal/
+# Youtube for morris traversal: https://www.youtube.com/watch?v=80Zug6D1_r4&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=38
+
 from collections import deque
 
 
@@ -120,6 +123,68 @@ def post_order_traversal_iterative_medium(root):
     print()
 
 
+def morris_traversal_inorder(root):
+    curr = root
+    while curr:
+        if curr.left is None:
+            print(curr.data, end=" ")
+            curr = curr.right
+        else:
+            prev = curr.left
+            while prev.right and prev.right != curr:
+                prev = prev.right
+
+            if prev.right is None:
+                prev.right = curr
+                curr = curr.left
+            else:
+                prev.right = None
+                print(curr.data, end=" ")
+                curr = curr.right
+
+
+def morris_traversal_preorder(root):
+    curr = root
+    while curr:
+        if curr.left is None:
+            print(curr.data, end=" ")
+            curr = curr.right
+        else:
+            prev = curr.left
+            while prev.right and prev.right != curr:
+                prev = prev.right
+
+            if prev.right is None:
+                prev.right = curr
+                print(curr.data, end=" ")
+                curr = curr.left
+            else:
+                prev.right = None
+                curr = curr.right
+
+
+def morris_traversal_postorder(root):
+    curr = root
+    nums = []
+    while curr:
+        if curr.right is None:
+            nums.append(curr.data)
+            curr = curr.left
+        else:
+            prev = curr.right
+            while prev.left and prev.left != curr:
+                prev = prev.left
+
+            if prev.left is None:
+                prev.left = curr
+                nums.append(curr.data)
+                curr = curr.right
+            else:
+                prev.left = None
+                curr = curr.left
+    print(*nums[::-1])
+
+
 if __name__ == "__main__":
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     root = None
@@ -137,7 +202,15 @@ if __name__ == "__main__":
     print("Post order traversal - Iterative and Recursive")
     post_order_traversal_iterative_medium(root)
     post_order_traversal_recursive(root)
-
+    print()
+    print("Morris inorder traversal - which takes O(1) space")
+    morris_traversal_inorder(root)
+    print()
+    print("Morris preorder traversal - which takes O(1) space")
+    morris_traversal_preorder(root)
+    print()
+    print("Morris postorder traversal - which takes O(1) space")
+    morris_traversal_postorder(root)
 
 
 
