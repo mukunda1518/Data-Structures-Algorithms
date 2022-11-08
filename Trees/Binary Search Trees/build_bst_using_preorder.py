@@ -38,6 +38,23 @@ def construct_binary_search_tree_using_preorder_traversal(preorder, p_index=0, m
     return root, p_index
 
 
+def construct_bst_by_using_preorder(preorder):
+    i = 0
+    len_ = len(preorder)
+
+    def build_bst_using_preorder(up_b):
+        nonlocal i
+        if i == len_ or preorder[i] > up_b:
+            return None
+        node = Node(preorder[i])
+        i += 1
+        node.left = build_bst_using_preorder(node.data)
+        node.right = build_bst_using_preorder(up_b)
+        return node
+
+    return build_bst_using_preorder(float("+inf"))
+
+
 def postorder_traversal(root):
     if root is None:
         return
