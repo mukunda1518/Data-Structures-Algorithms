@@ -21,7 +21,7 @@
 #     if arr[index] == target:
 #         list_a.append(index)
 #     return found_element_indexs(arr, target, index + 1, list_a)
-#     # return arr[index] == target || found_element(arr, target, index + 1)
+
 #
 # if __name__ == "__main__":
 #     arr = [5, 8, 1, 2, 3, 5, 6, 7, 5]

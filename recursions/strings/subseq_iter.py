@@ -7,7 +7,7 @@ def remove_duplicates(arr):
     for i in range(len(arr)):
         start = 0
         if i > 0 and arr[i] == arr[i-1]:
-            start = end + 1
+            start = end
         end = len(outer_arr)
         for j in range(start, end):
             sub_arr = copy.deepcopy(outer_arr[j])

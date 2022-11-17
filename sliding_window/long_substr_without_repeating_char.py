@@ -1,3 +1,16 @@
+def longestSubstring(s):
+    l = 0
+    max_len = 0
+    set_a = set()
+    for r in range(0, len(s)):
+        while s[r] in set_a:
+            set_a.remove(s[l])
+            l += 1
+        set_a.add(s[r])
+        max_len = max(r - l + 1, max_len)
+    return max_len
+
+
 if __name__ == "__main__":
     s = input()
     map = {}
