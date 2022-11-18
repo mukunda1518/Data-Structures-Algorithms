@@ -7,6 +7,7 @@ from collections import deque
 # Time Complexity - O(k^n)
 # Space Complexity - O(1) without stack space
 
+
 def get_minimum_energy(n, heights, k):
     if n == 0:
         return 0
