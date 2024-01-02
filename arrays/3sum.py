@@ -4,7 +4,6 @@ if __name__ == "__main__":
     n, k = list(map(int, input().split()))
     nums = list(map(int, input().split()))
     nums.sort()
-    print(nums)
     triplets = []
     for i in range(n - 2):
         if i != 0 and nums[i - 1] == nums[i]:
