@@ -1,3 +1,7 @@
+# Problem : https://www.youtube.com/watch?v=teM9ZsVRQyc
+# https://www.geeksforgeeks.org/problems/fruit-into-baskets-1663137462/1
+
+
 if __name__ == "__main__":
     s = input()
     k = int(input())
@@ -17,5 +21,6 @@ if __name__ == "__main__":
                 del map[s[i]]
             i += 1
     print(max_len)
+    
     # print(max(max_len, j - i + 1))
         
