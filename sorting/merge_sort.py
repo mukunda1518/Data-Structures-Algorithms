@@ -1,3 +1,35 @@
+
+# Leetcode - https://leetcode.com/problems/sort-an-array/submissions/1463914939/
+
+
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        if n <= 1: return nums
+    
+        mid = n // 2
+        left = self.sortArray(nums[:mid])
+        right = self.sortArray(nums[mid:])
+    
+        result = []
+        l, r = 0, 0
+        
+        while l < len(left) and r < len(right):
+            if left[l] < right[r]:
+                result.append(left[l])
+                l += 1
+            else:
+                result.append(right[r])
+                r += 1
+
+        if l < len(left):
+            result.extend(left[l:])
+        elif r < len(right):
+            result.extend(right[r:])
+
+        return result
+
+
 def merge(left, right):
     len_l = len(left)
     len_r = len(right)
