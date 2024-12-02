@@ -1,10 +1,3 @@
-from bdb import effective
-from errno import E2BIG
-from sys import _enablelegacywindowsfsencoding
-from urllib.parse import scheme_chars
-from xml.sax.handler import feature_external_ges
-
-
 def binary_search(nums, target):
     l, r = 0, len(nums) - 1
     if nums[l] > target:
