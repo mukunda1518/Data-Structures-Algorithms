@@ -50,3 +50,51 @@ for _ in range(t):
         temp = temp.next
     print(l_list.is_linked_list_palindrome(l_list.head))
     
+
+
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+from typing import Optional
+
+class Solution:
+    def reverse(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        temp = head
+        while temp:
+            next_temp = temp.next
+            temp.next = prev
+            prev = temp
+            temp = next_temp
+        return prev 
+
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+
+        if head is None or head.next is None:
+            return True
+        
+        slow = head
+        fast = head
+
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        new_head = self.reverse(slow.next)
+
+        left = head
+        right = new_head
+
+        while right:
+            if left.val != right.val:
+                self.reverse(new_head)
+                return False
+            left = left.next
+            right = right.next
+        self.reverse(new_head)
+        return True
