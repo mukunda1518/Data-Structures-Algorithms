@@ -2,7 +2,6 @@
 
 
 class Queue:
-    
     def __init__(self):
         self.queue = []
         self._start = -1
