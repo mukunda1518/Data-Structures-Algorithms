@@ -38,6 +38,34 @@ class Queue:
         return self.size
 
 
+        
+class MyQueue:
+    
+    def __init__(self):
+        self._front = None
+        self._rear = None
+    #Function to push an element into the queue.
+    def push(self, item):
+        new_node = Node(item)
+        if not self._front and not self._rear:
+            self._front = new_node
+            self._rear = new_node
+        else:
+            self._rear.next = new_node
+            self._rear = new_node
+    
+    #Function to pop front element from the queue.
+    def pop(self):
+        if not self._front:
+            return -1
+        val = self._front.data
+        self._front = self._front.next
+        if not self._front:
+            self._rear = None
+        return val
+
+
+
 
 if __name__ == "__main__":
     queue = Queue()
