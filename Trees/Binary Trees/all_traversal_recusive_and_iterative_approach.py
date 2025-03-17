@@ -71,6 +71,23 @@ def in_order_traversal_iterative(root):
         root = root.right
     print()
 
+def inorder_traversal_iterative(root):
+    res = []
+    if root is None:
+        return res
+    stack = []
+    node = root
+    while True:
+        if node:
+            stack.append(node)
+            node = node.left
+        else:
+            if not stack:
+                break
+            node = stack.pop()
+            res.append(node.val)
+            node = node.right
+    return res
 
 def post_order_traversal_recursive(root):
     if root is not None:
@@ -102,6 +119,22 @@ def post_order_traversal_iterative_hard(root):
             print(root.data, end=" ")
             root = None
     print()
+
+
+def postorder_traversal(root):
+    res = []
+    if not root:
+        return res
+
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        res.append(node.val)
+        if node.left:
+            stack.append(node.left)
+        if node.right:
+            stack.append(node.right)
+    return res[::-1]
 
 
 def post_order_traversal_iterative_medium(root):
