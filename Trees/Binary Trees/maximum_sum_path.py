@@ -70,3 +70,53 @@ if __name__ == "__main__":
     root = build_tree(arr, root)
     print(find_max_sum_path1(root))
         
+
+
+from typing import Optional
+
+# Which handles negative values also
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        max_sum = [float("-inf")]
+
+        def dfs(node):
+            if node is None:
+                return 0
+            
+            lmax = dfs(node.left)
+            rmax = dfs(node.right)
+
+            single_path_sum = max(node.val, node.val + lmax, node.val + rmax)
+            max_sum[0] = max(max_sum[0], single_path_sum, node.val + lmax + rmax)
+            return single_path_sum
+
+        dfs(root)
+        return max_sum[0]
+
+
+class Solution1:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+
+        def dfs(node):
+            if node is None:
+                return (float("-inf"), 0)
+            
+            lmax, lsingle = dfs(node.left)
+            rmax, rsingle = dfs(node.right)
+
+            single_path_sum = max(node.val, node.val + lsingle, node.val + rsingle)
+            max_sum = max(lmax, rmax, single_path_sum, node.val + lsingle + rsingle)
+            return (max_sum, single_path_sum)
+
+        return dfs(root)[0]
+
+
+
+        

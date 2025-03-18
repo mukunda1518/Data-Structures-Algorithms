@@ -1,5 +1,7 @@
 # Leetcode: https://leetcode.com/problems/diameter-of-binary-tree/
 
+# https://www.youtube.com/watch?v=Rezetez59Nk
+
 
 
 # Rule1: Longest path between 2 nodes
