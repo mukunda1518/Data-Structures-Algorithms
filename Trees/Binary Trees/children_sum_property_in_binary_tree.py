@@ -37,3 +37,82 @@ def change_binary_tree(root):
         total += root.right.data
     if root.left or root.right:
         root.data = total
+
+
+
+# Geeks for Geeks
+
+# https://www.geeksforgeeks.org/problems/children-sum-parent/1
+
+
+'''
+# Node Class:
+class Node:
+    def init(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+class Solution:
+    #Function to check whether all nodes of a tree have the value 
+    #equal to the sum of their child nodes.
+    def isSumProperty(self, root):
+        # code here
+        def dfs(node):
+            if not node:
+                return 1
+            if not node.left and not node.right:
+                return 1
+            
+            l_val = node.left.data if node.left else 0
+            r_val = node.right.data if node.right else 0
+            
+            if l_val + r_val != node.data:
+                return 0
+        
+            return dfs(node.left) and dfs(node.right)
+    
+        return dfs(root)
+    
+
+# Making all the nodes to follow Children Sum Property in Binary Tree 
+
+
+class Solution:
+    def main_child_sum(self, root):
+        # # Making all the nodes to follow Children Sum Property in Binary Tree 
+        def dfs(node):
+            if not node:
+                return 
+            
+            c_sum = 0
+            if node.left:
+                c_sum += node.left.val
+            if node.right:
+                c_sum += node.right.val
+            
+            if node.val < c_sum:
+                node.val = c_sum
+            else:
+                if node.left:
+                    node.left.val = c_sum
+                if node.right:
+                    node.right.val = c_sum
+            
+            dfs(node.left)
+            dfs(node.right)
+        
+            total = 0
+            
+            if node.left:
+                total += node.left.val
+            if node.right:
+                total += node.right.val
+            
+            if node.left or node.right:
+                node.val = total
+
+        dfs(root)
+        return root
+

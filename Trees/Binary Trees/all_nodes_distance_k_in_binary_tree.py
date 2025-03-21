@@ -64,3 +64,40 @@ class Solution:
 
         track_the_parent_of_nodes(root)
         return get_nodes_at_distance_k(target, k)
+
+
+
+class Solution1:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        child_parent_map = {}
+        queue = deque([root])
+        while queue:
+            node = queue.popleft()
+            if node.left:
+                child_parent_map[node.left] = node
+                queue.append(node.left)
+            if node.right:
+                child_parent_map[node.right] = node
+                queue.append(node.right)
+
+        visited = set([target])
+        queue = deque([target])
+        distance = 0
+        while queue and distance < k:
+            size = len(queue)
+            for _ in range(size):
+                node = queue.popleft()
+                if node.left and node.left not in visited:
+                    queue.append(node.left)
+                    visited.add(node.left)
+                if node.right and node.right not in visited:
+                    queue.append(node.right)
+                    visited.add(node.right)
+                if node in child_parent_map and child_parent_map[node] not in visited:
+                    queue.append(child_parent_map[node])
+                    visited.add(child_parent_map[node])
+    
+            distance += 1
+        return [node.val for node in queue]
+            
+

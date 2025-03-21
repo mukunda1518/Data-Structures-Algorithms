@@ -1,5 +1,7 @@
 # Leetcode: https://leetcode.com/problems/maximum-width-of-binary-tree/description/
 
+# https://www.youtube.com/watch?v=ZbybYvcVLks
+
 # Definition for a binary tree node.
 from collections import deque
 from typing import Optional
@@ -32,4 +34,25 @@ class Solution:
                     dq.append((node.right, 2 * val + 2))
         return width
 
+
+class Solution:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+
+        max_width = 0
+        queue = deque([(root, 0)])
+
+        while queue:
+            size = len(queue)
+            _, l_index = queue[0]
+            _, r_index = queue[-1]
+            max_width = max(max_width, r_index - l_index + 1)
+            for i in range(size):
+                node, index = queue.popleft()
+                if node.left:
+                    queue.append([node.left, 2 * index])
+                if node.right:
+                    queue.append([node.right, 2 * index + 1])
+        return max_width
 
