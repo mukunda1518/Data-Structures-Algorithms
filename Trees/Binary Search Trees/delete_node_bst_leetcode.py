@@ -80,3 +80,47 @@ class Solution:
 
 
 
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+
+    def helper(self, root):
+        if root.left is None:
+            return root.right
+        elif root.right is None:
+            return root.left
+        else:
+            node = root.left
+            while node.right:
+                node = node.right
+            node.right = root.right
+            return root.left
+
+
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        if root and root.val == key:
+            return self.helper(root)
+        node = root
+        while node:
+            if key < node.val:
+                if node.left and node.left.val == key:
+                    node.left = self.helper(node.left)
+                    break
+                else:
+                    node = node.left
+            else:
+                if node.right and node.right.val == key:
+                    node.right = self.helper(node.right)
+                    break
+                else:
+                    node = node.right
+        return root
+
+
+        
+        
+

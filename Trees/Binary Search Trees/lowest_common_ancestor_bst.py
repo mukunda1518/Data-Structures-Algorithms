@@ -19,3 +19,14 @@ class Solution:
             return self.lowestCommonAncestor(root.right, p, q)
         return root
 
+        # Iterative
+        node = root
+        while node:
+            val = node.val
+            if val > p.val and val > q.val:
+                node = node.left
+            elif val < p.val and val < q.val:
+                node = node.right
+            else:
+                return node
+        return node

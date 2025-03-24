@@ -1,4 +1,5 @@
 # Leetcode: https://leetcode.com/problems/validate-binary-search-tree/description/
+# https://www.youtube.com/watch?v=f-sj7I5oXEI
 
 
 from collections import deque
