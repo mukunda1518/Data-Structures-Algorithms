@@ -59,3 +59,46 @@ class Solution:
         return False
 
 
+class BSTIterator:
+
+    def push_all(self, node):
+        while node:
+            self.stack.append(node)
+            if self.is_reverse:
+                node = node.right
+            else:
+                node = node.left
+    
+    def next(self):
+        node = self.stack.pop()
+        if self.is_reverse:
+            self.push_all(node.left)
+        else:
+            self.push_all(node.right)
+        return node.val
+
+
+    def __init__(self, root: Optional[TreeNode], is_reverse: bool):
+        self.stack = []
+        self.is_reverse = is_reverse
+        self.push_all(root)
+
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        if not root:
+            return False
+    
+        l = BSTIterator(root, False)
+        r = BSTIterator(root, True)
+
+        i = l.next()
+        j = r.next()
+
+        while i < j:
+            if i + j == k:
+                return True
+            if i + j < k:
+                i = l.next()
+            else:
+                j = r.next()
+        return False
