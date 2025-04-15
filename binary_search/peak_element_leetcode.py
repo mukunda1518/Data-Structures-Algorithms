@@ -11,7 +11,7 @@ class Solution:
         if nums[n - 1] > nums[n - 2]:
             return n - 1
 
-        low, high = 1, n - 1
+        low, high = 1, n - 2
 
         while low <= high:
             mid = low + (high - low) // 2

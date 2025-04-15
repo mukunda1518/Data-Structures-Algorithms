@@ -1,5 +1,8 @@
 # Leetcode: https://leetcode.com/problems/find-a-peak-element-ii/
 
+# Time Complexity = O(n * log m)
+
+
 class Solution:
 
     def get_max_element_index(self, mat, n, m, col):

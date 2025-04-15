@@ -1,4 +1,4 @@
-# Problem : https://www.naukri.com/code360/problems/allocate-books_1090540?utm_source=youtube&utm_medium=affiliate&utm_campaign=codestudio_Striver_BinarySeries&leftPanelTabValue=PROBLEM
+# Problem : https://www.naukri.com/code360/problems/allocate-books_1090540
 
 # Problem statement
 # Given an array ‘arr’ of integer numbers, ‘arr[i]’ represents the number of pages in the ‘i-th’ book.
@@ -43,7 +43,7 @@
 # Hence answer is ‘113’.
 
 
-def findPages(arr: [int], n: int, m: int) -> int:
+def findPages(arr: list[int], n: int, m: int) -> int:
 
     def is_allocation_possible(arr, pages, students):
         no_of_students = 1
