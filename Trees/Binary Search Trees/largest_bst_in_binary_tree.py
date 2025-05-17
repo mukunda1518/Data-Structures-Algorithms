@@ -22,10 +22,10 @@ def find_largest_bst_size_in_binary_tree(root):
 
         # current node is greater than max in left AND smaller than min in right
         if left_tup[0] < root.val and root.val < right_tup[1]: # it is BST
-            return (max(root.val, left_tup[0]), min(root.val, right_tup[0]), left_tup[2] + right_tup[2] + 1)
+            return (max(root.val, right_tup[0]), min(root.val, left_tup[1]), left_tup[2] + right_tup[2] + 1)
                     # max_value, min_value, size
         else:
-            # It is not BST, min as INT_MAX and max as INT_MIN, size - max(left, right)
+            # It is not BST, max as INT_MAX and min as INT_MIN, size = max(left, right)
             return (float("+inf"), float("-inf"), max(left_tup[2], right_tup[2]))
 
     tup_ = find_largest_bst_size_in_binary_tree(root)
@@ -36,16 +36,17 @@ def find_largest_bst_size_in_binary_tree(root):
 
 class Nodeval:
 
-    def __init__(self, max_node, min_node, max_size):
-        self.max_node = None
-        self.min_node = None
-        self.max_size = 0
+    def __init__(self, min_node, max_node, max_size):
+        self.min_node = min_node
+        self.max_node = max_node
+        self.max_size = max_size
 
 
 def find_largest_bst(root):
     # An empty tree is BST of size 0
     if root is None:
-        return Nodeval(float("-inf"), float("+inf"), 0)
+        # (min, max, size)
+        return Nodeval(float("+inf"), float("-inf"), 0)
 
     # Get values of left and right subtree of current tree
     left = find_largest_bst(root.left)
@@ -53,8 +54,8 @@ def find_largest_bst(root):
 
     # current node is greater than max in left AND smaller than min in right
     if left.max_node < root.val and root.val < right.min_node:  # it is BST
-        return Nodeval(max(root.val, left.max_node), min(root.val, right.min_node), left.max_size + right.max_size + 1)
+        return Nodeval(min(root.val, left.min_node), max(root.val, right.max_node), left.max_size + right.max_size + 1)
             # max_value, min_value, size
     else:
-        # It is not BST, min as INT_MAX and max as INT_MIN, size - max(left, right)
-        return Nodeval(float("+inf"), float("-inf"), max(left.max_size, right.max_size))
+        # It is not BST, max as INT_MAX and min as INT_MIN, size = max(left, right)
+        return Nodeval(float("-inf"), float("+inf"), max(left.max_size, right.max_size))
